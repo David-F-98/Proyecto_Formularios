@@ -1,6 +1,8 @@
 const formulario = document.getElementById('formulario-donacion');
 formulario.addEventListener('submit',(e)=>{
     e.preventDefault();
+
+    const expresionRegular = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.-]+/g;
     
     const datos = {
         correo:formulario.correo.value,
@@ -10,11 +12,16 @@ formulario.addEventListener('submit',(e)=>{
         terminos: formulario['terminos-y-condiciones'].checked,
     };
 
-    if(datos.correo.length  <= 2){
+    // if(datos.correo.length  <= 2){
+    //     console.log('Correo invalido'); 
+    //     return; 
+    // };
+    
+    if(!expresionRegular.test(datos.correo)){
         console.log('Correo invalido'); 
         return; 
     };
-    
+
     if(datos.pais === ''){
         console.log('Pais invalido'); 
         return; 
